@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<h2>SLM Owner Form</h2>
+
+<form id="slmForm">
+  <label for="name">Name:</label><br>
+  <input type="text" id="name" name="name"><br>
+  <label for="owner">Owner:</label><br>
+  <input type="text" id="owner" name="owner"><br>
+  <!-- Add other fields as necessary -->
+  <input type="submit" value="Submit">
+</form>
+
+<script>
+document.getElementById("slmForm").addEventListener("submit", function(event){
+  event.preventDefault()
+
+  let form = document.getElementById('slmForm');
+  let formData = new FormData(form);
+
+  fetch('/submit_model', {
+    method: 'POST',
+    body: formData
+  }).then(response => response.json())
+  .then(data => console.log(data))
+  .catch((error) => {
+    console.error('Error:', error);
+  });
+});
+</script>
+
+</body>
+</html> 
